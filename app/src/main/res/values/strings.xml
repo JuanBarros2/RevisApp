@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Revisapp</string>
+    <string name="action_settings">Configurações</string>
+
+    <string name="schedule">Horário</string>
+    <string name="sucess_insert">Foi inserido um novo horário</string>
+    <string name="error_insert">Erro ao tentar inserir</string>
+
+    <string name="info_schedule">Defina o intervalo</string>
+    <string name="ok">OK</string>
+    <string name="matter">Matéria</string>
+    <string name="initial">Inicial</string>
+    <string name="end">Final</string>
+    <string name="title_home">Home</string>
+    <string name="attach">Anexar</string>
+    <string name="take_picture">Tirar Foto</string>
+    <string name="permission_error">Não foi possível continuar. Todas as permissões precisam ser concedidas.</string>
+    <string name="retry">Tentar Novamente</string>
+    <string name="photo_error">Aconteceu um erro ao tirar a foto</string>
+</resources>
