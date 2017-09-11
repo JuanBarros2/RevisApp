@@ -1,9 +1,9 @@
-package com.revisapp.schedule;
+package com.revisapp.ui.main.matter;
 
 import android.content.Context;
 import android.content.Intent;
 import android.curso.revisapp.R;
-import com.revisapp.TabFragment;
+import com.revisapp.ui.main.TabFragment;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,12 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class ScheduleFragment extends TabFragment{
+public class MatterFragment extends TabFragment{
 
-    private ScheduleModel model;
+    private MatterModelImpl model;
     private MatterAdapter adapter;
 
-    public ScheduleFragment() {
+    public MatterFragment() {
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ScheduleFragment extends TabFragment{
             }
         });
 
-        model = new ScheduleModel(getContext());
+        model = new MatterModelImpl(getContext());
 
         RecyclerView recycleMatter = (RecyclerView) view.findViewById(R.id.matter_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());

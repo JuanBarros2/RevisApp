@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.revisapp.schedule.HomeFragment">
+    tools:context="com.revisapp.ui.main.photo.ListPhotoFragment">
 
     <Button
         android:id="@+id/take_picture_btn"

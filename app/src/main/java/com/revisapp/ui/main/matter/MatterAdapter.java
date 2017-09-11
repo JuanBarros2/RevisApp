@@ -1,4 +1,4 @@
-package com.revisapp.schedule;
+package com.revisapp.ui.main.matter;
 
 import android.curso.revisapp.R;
 import android.support.v7.widget.RecyclerView;

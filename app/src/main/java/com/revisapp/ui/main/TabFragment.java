@@ -1,4 +1,4 @@
-package com.revisapp;
+package com.revisapp.ui.main;
 
 import android.support.v4.app.Fragment;
 

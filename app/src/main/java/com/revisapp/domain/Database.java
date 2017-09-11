@@ -1,7 +1,6 @@
-package com.revisapp.schedule;
+package com.revisapp.domain;
 
 import com.revisapp.domain.Matter;
-import com.revisapp.domain.Schedule;
 
 /**
  * Created by juan_ on 06/09/2017.

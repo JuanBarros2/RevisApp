@@ -1,4 +1,4 @@
-package com.revisapp.schedule;
+package com.revisapp.ui.main.matter;
 
 import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -9,15 +9,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
-import com.revisapp.domain.Schedule;
-
 import java.util.Calendar;
-import java.util.Date;
 
 public class InfoScheduleActivity extends AppCompatActivity {
     private Calendar initial_schedule;
     private Calendar final_schedule;
-    private ScheduleModel model;
+    private MatterModelImpl model;
     private EditText name_field;
 
     @Override
@@ -43,7 +40,7 @@ public class InfoScheduleActivity extends AppCompatActivity {
         final_schedule = Calendar.getInstance();
         final_schedule.set(Calendar.HOUR, initial_schedule.get(Calendar.HOUR) + 1);
 
-        model = new ScheduleModel(this);
+        model = new MatterModelImpl(this);
     }
 
 

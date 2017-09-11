@@ -1,4 +1,4 @@
-package com.revisapp;
+package com.revisapp.helper;
 
 import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;
@@ -8,5 +8,5 @@ import com.bumptech.glide.module.AppGlideModule;
  */
 
 @GlideModule
-public class RevisapApp extends AppGlideModule {
+public class AppGlideHelper extends AppGlideModule {
 }

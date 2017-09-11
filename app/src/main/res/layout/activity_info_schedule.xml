@@ -5,7 +5,7 @@
     style="@style/AppTheme.NoActionBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.revisapp.schedule.InfoScheduleActivity">
+    tools:context="com.revisapp.ui.main.matter.InfoScheduleActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/info_toolbar"
