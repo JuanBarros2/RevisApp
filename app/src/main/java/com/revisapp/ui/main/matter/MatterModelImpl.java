@@ -53,7 +53,7 @@ public class MatterModelImpl {
         return matters.remove(matter);
     }
 
-    public List<Matter> getMatters(){
+    List<Matter> getMatters(){
         return matters;
     }
 }

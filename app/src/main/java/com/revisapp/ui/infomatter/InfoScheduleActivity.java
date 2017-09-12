@@ -1,4 +1,4 @@
-package com.revisapp.ui.main.matter;
+package com.revisapp.ui.infomatter;
 
 import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TimePicker;
+
+import com.revisapp.ui.main.matter.MatterModelImpl;
 
 import java.util.Calendar;
 
@@ -30,10 +32,12 @@ public class InfoScheduleActivity extends AppCompatActivity {
         if (savedInstanceState == null){
             initVars();
         }
-
-
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
 
     private void initVars() {
         initial_schedule = Calendar.getInstance();

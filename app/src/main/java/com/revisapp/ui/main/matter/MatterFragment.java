@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.revisapp.ui.infomatter.InfoScheduleActivity;
+
 
 public class MatterFragment extends Fragment {
 
@@ -55,6 +57,10 @@ public class MatterFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
 
     @Override
     public void onAttach(Context context) {

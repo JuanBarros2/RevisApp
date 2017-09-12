@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.revisapp.ui.main.matter.InfoScheduleActivity"
+            android:name="com.revisapp.ui.infomatter.InfoScheduleActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

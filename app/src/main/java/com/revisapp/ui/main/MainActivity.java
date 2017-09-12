@@ -5,6 +5,7 @@ import com.revisapp.ui.main.matter.MatterFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.curso.revisapp.R;
+import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -60,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
         return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

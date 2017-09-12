@@ -50,6 +50,10 @@ public class ListPhotoFragment extends Fragment implements PhotoMVP.View{
         presenter.takePicture();
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
