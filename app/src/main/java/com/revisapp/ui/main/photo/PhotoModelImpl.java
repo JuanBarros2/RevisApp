@@ -18,19 +18,18 @@ import in.cubestack.android.lib.storm.service.BaseService;
 import in.cubestack.android.lib.storm.service.StormService;
 
 /**
- * Created by juan_ on 11/09/2017.
+ * Criado por Juan em 11/09/2017.
  */
 
-public class PhotoModelImpl implements PhotoMVP.Model {
+class PhotoModelImpl implements PhotoMVP.Model {
 
     private PhotoMVP.Presenter presenter;
     private List<Content> photos;
-    private StormService service;
 
-    public PhotoModelImpl(PhotoMVP.Presenter presenter) {
+    PhotoModelImpl(PhotoMVP.Presenter presenter) {
         if (presenter != null) {
             this.presenter = presenter;
-            service = new BaseService(presenter.getContext(), Database.class);
+            StormService service = new BaseService(presenter.getContext(), Database.class);
             try {
                 photos = service.findAll(Content.class);
             } catch (Exception e) {

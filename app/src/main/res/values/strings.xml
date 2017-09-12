@@ -17,4 +17,5 @@
     <string name="permission_error">Não foi possível continuar. Todas as permissões precisam ser concedidas.</string>
     <string name="retry">Tentar Novamente</string>
     <string name="photo_error">Aconteceu um erro ao tirar a foto</string>
+    <string name="camera">Câmera</string>
 </resources>

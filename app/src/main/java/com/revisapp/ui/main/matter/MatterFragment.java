@@ -3,10 +3,10 @@ package com.revisapp.ui.main.matter;
 import android.content.Context;
 import android.content.Intent;
 import android.curso.revisapp.R;
-import com.revisapp.ui.main.TabFragment;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class MatterFragment extends TabFragment{
+public class MatterFragment extends Fragment {
 
     private MatterModelImpl model;
     private MatterAdapter adapter;
@@ -59,11 +59,6 @@ public class MatterFragment extends TabFragment{
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-    }
-
-    @Override
-    public String getTitle() {
-        return "Horário";
     }
 
 }

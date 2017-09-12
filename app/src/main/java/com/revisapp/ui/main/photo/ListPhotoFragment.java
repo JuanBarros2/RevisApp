@@ -5,16 +5,15 @@ import android.curso.revisapp.R;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.revisapp.ui.main.TabFragment;
 
-
-public class ListPhotoFragment extends TabFragment implements PhotoMVP.View{
+public class ListPhotoFragment extends Fragment implements PhotoMVP.View{
 
     private PhotoMVP.Presenter presenter;
 
@@ -55,12 +54,8 @@ public class ListPhotoFragment extends TabFragment implements PhotoMVP.View{
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        presenter.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-    }
-
-    @Override
-    public String getTitle() {
-        return "Home";
     }
 
     @Override

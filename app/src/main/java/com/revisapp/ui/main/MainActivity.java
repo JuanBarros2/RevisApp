@@ -2,6 +2,8 @@ package com.revisapp.ui.main;
 import com.revisapp.ui.main.photo.ListPhotoFragment;
 import com.revisapp.ui.main.matter.MatterFragment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.curso.revisapp.R;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), this);
 
         ViewPager mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -64,20 +66,27 @@ public class MainActivity extends AppCompatActivity {
         mSectionsPagerAdapter.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mSectionsPagerAdapter.onActivityResult(requestCode, resultCode, data);
+    }
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
     private class SectionsPagerAdapter extends FragmentPagerAdapter {
         List<Fragment> fragments;
+        Context context;
 
-        SectionsPagerAdapter(FragmentManager fm) {
+        SectionsPagerAdapter(FragmentManager fm, Context context) {
             super(fm);
+            this.context = context;
             fragments = new ArrayList<>();
             fragments.add(new ListPhotoFragment());
             fragments.add(new MatterFragment());
             fragments.add(new MatterFragment());
-
 
         }
 
@@ -96,10 +105,10 @@ public class MainActivity extends AppCompatActivity {
             CharSequence charSequence;
             switch (position){
                 case 0:
-                    charSequence = "Câmera";
+                    charSequence = context.getString(R.string.camera);
                     break;
                 case 1:
-                    charSequence = "Matéria";
+                    charSequence = context.getString(R.string.matter);
                     break;
                 default:
                     charSequence = "NON";
@@ -108,14 +117,18 @@ public class MainActivity extends AppCompatActivity {
             return charSequence;
         }
 
-        public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
             for (Fragment fragment : fragments){
                 fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
             }
         }
+
+        void onActivityResult(int requestCode, int resultCode, Intent data) {
+            for (Fragment fragment : fragments){
+                fragment.onActivityResult(requestCode, resultCode, data);
+            }
+        }
     }
-
-
 
 
 }
