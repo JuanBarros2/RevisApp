@@ -22,9 +22,4 @@
         android:layout_height="wrap_content"
         android:text="Button" />
 
-    <ImageView
-        android:id="@+id/photo_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srcCompat="@drawable/ic_photo_camera_white_24px" />
 </LinearLayout>

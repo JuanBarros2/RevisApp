@@ -1,6 +1,4 @@
-package com.revisapp.ui.main.matter;
-
-import android.content.Context;
+package com.revisapp.ui.infomatter;
 
 import com.revisapp.domain.Database;
 import com.revisapp.domain.Matter;
@@ -16,12 +14,14 @@ import in.cubestack.android.lib.storm.service.StormService;
  * Created by juan_ on 05/09/2017.
  */
 
-public class MatterModelImpl {
+public class MatterModelImpl implements InfoMatterMVP.Model{
     private List<Matter> matters;
     private StormService service;
+    private InfoMatterMVP.Presenter presenter;
 
-    public MatterModelImpl(Context context){
-        service = new BaseService(context, Database.class);
+    public MatterModelImpl(InfoMatterMVP.Presenter presenter){
+        this.presenter = presenter;
+        service = new BaseService(presenter.getContext(), Database.class);
         try {
             matters  = service.findAll(Matter.class);
         } catch (Exception e) {
@@ -30,7 +30,8 @@ public class MatterModelImpl {
         }
     }
 
-    public boolean insertSchedule(String name, Calendar initial, Calendar finall){
+    @Override
+    public boolean insertMatter(String name, Calendar initial, Calendar finall){
         boolean inserted = false;
         Matter matter = new Matter(name, initial.getTime().getTime(), finall.getTime().getTime() );
 
@@ -47,13 +48,21 @@ public class MatterModelImpl {
         return inserted;
     }
 
-    public boolean removeSchedule(String name){
+    @Override
+    public boolean updateMatter(String name, Calendar initial, Calendar finall) {
+        return false;
+    }
+
+    @Override
+    public boolean removeMatter(String name){
         Matter matter = new Matter(name, 0, 0);
 
+       // service.delete(matter);
         return matters.remove(matter);
     }
 
-    List<Matter> getMatters(){
+    @Override
+    public List<Matter> getMatters(){
         return matters;
     }
 }

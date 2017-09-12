@@ -7,7 +7,11 @@ import com.revisapp.domain.Matter;
  */
 
 
-@in.cubestack.android.lib.storm.annotation.Database(name = "Revisapp", tables = {Matter.class}, version = 1)
+@in.cubestack.android.lib.storm.annotation.Database(
+        name = "Revisapp",
+        tables = {
+                Matter.class, Photo.class},
+        version = 1)
 public class Database {
 
 }

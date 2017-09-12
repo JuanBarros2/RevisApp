@@ -1,6 +1,6 @@
 package com.revisapp.ui.main;
 import com.revisapp.ui.main.photo.ListPhotoFragment;
-import com.revisapp.ui.main.matter.MatterFragment;
+import com.revisapp.ui.main.matter.ListMatterFragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -90,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
             this.context = context;
             fragments = new ArrayList<>();
             fragments.add(new ListPhotoFragment());
-            fragments.add(new MatterFragment());
-            fragments.add(new MatterFragment());
+            fragments.add(new ListMatterFragment());
+            fragments.add(new ListMatterFragment());
 
         }
 

@@ -1,10 +1,10 @@
 package com.revisapp.ui.main.matter;
 
-import android.content.Context;
 import android.content.Intent;
 import android.curso.revisapp.R;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -14,15 +14,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.revisapp.ui.infomatter.InfoScheduleActivity;
+import com.revisapp.ui.infomatter.InfoMatterActivity;
+import com.revisapp.ui.main.matter.mvp.ListMatterMVP;
+import com.revisapp.ui.main.matter.mvp.ListMatterPresenterImpl;
 
+public class ListMatterFragment extends Fragment implements ListMatterMVP.View {
 
-public class MatterFragment extends Fragment {
+    private ListMatterMVP.Presenter presenter;
 
-    private MatterModelImpl model;
-    private MatterAdapter adapter;
+    public ListMatterFragment() {
 
-    public MatterFragment() {
     }
 
     @Override
@@ -33,28 +34,36 @@ public class MatterFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = setUp(inflater, container);
+        presenter = new ListMatterPresenterImpl(this);
+        return view;
+    }
+
+    @NonNull
+    private View setUp(LayoutInflater inflater, ViewGroup container) {
         View view = inflater.inflate(R.layout.fragment_schedule, container, false);
 
         FloatingActionButton actionButton = (FloatingActionButton) view.findViewById(R.id.add_schedule_btn);
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), InfoScheduleActivity.class);
-                startActivityForResult(intent, 1);
+                Intent intent = new Intent(getContext(), InfoMatterActivity.class);
+                startActivityForResult(intent, ListMatterMVP.REQUEST_ADD_MATTER);
             }
         });
-
-        model = new MatterModelImpl(getContext());
-
         RecyclerView recycleMatter = (RecyclerView) view.findViewById(R.id.matter_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         RecyclerView.ItemDecoration itemDecoration = new
                 DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         recycleMatter.addItemDecoration(itemDecoration);
         recycleMatter.setLayoutManager(layoutManager);
-        MatterAdapter adapter = new MatterAdapter(model.getMatters());
-        recycleMatter.setAdapter(adapter);
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        presenter.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -63,8 +72,12 @@ public class MatterFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void loading() {
+
     }
 
+    @Override
+    public void loaded() {
+
+    }
 }

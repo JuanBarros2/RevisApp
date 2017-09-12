@@ -10,7 +10,7 @@ import in.cubestack.android.lib.storm.annotation.Table;
  */
 
 @Table(name="Content_tb")
-public class Content {
+public class Photo {
 
     @PrimaryKey
     @Column(name = "ID", type = FieldType.LONG)
@@ -20,7 +20,7 @@ public class Content {
     @Column(name = "URL", type = FieldType.TEXT)
     private String url;
 
-    public Content(long id, String type, String url) {
+    public Photo(long id, String type, String url) {
         this.id = id;
         this.type = type;
         this.url = url;
@@ -31,9 +31,9 @@ public class Content {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Content content = (Content) o;
+        Photo photo = (Photo) o;
 
-        return id == content.id;
+        return id == photo.id;
 
     }
 

@@ -18,4 +18,10 @@
     <string name="retry">Tentar Novamente</string>
     <string name="photo_error">Aconteceu um erro ao tirar a foto</string>
     <string name="camera">Câmera</string>
+
+
+    <!-- Constantes para passagem de BUNDLE-->
+    <string name="bundle_matter">bundle_matter</string>
+    <string name="remove_matter">Ocorreu um erro ao tentar remover a matéria</string>
+    <string name="bundle_new_matter">bundle_new_matter</string>
 </resources>

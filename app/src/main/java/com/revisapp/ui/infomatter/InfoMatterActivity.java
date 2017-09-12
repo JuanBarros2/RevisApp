@@ -1,6 +1,8 @@
 package com.revisapp.ui.infomatter;
 
+import android.app.Activity;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.curso.revisapp.R;
@@ -9,20 +11,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
-import com.revisapp.ui.main.matter.MatterModelImpl;
-
 import java.util.Calendar;
 
-public class InfoScheduleActivity extends AppCompatActivity {
+public class InfoMatterActivity extends AppCompatActivity implements InfoMatterMVP.View {
+    private InfoMatterMVP.Presenter presenter;
     private Calendar initial_schedule;
     private Calendar final_schedule;
-    private MatterModelImpl model;
     private EditText name_field;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_info_schedule);
+        setContentView(R.layout.activity_info_matter);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.info_toolbar);
         setSupportActionBar(toolbar);
@@ -44,7 +44,6 @@ public class InfoScheduleActivity extends AppCompatActivity {
         final_schedule = Calendar.getInstance();
         final_schedule.set(Calendar.HOUR, initial_schedule.get(Calendar.HOUR) + 1);
 
-        model = new MatterModelImpl(this);
     }
 
 
@@ -73,5 +72,35 @@ public class InfoScheduleActivity extends AppCompatActivity {
             setResult(RESULT_OK, getIntent());
             finish();
         };
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
+    @Override
+    public Activity getActivity() {
+        return this;
+    }
+
+    @Override
+    public void onInsertMatter(String name, Calendar initial, Calendar finall) {
+
+    }
+
+    @Override
+    public void onUpdateMatter(String name, Calendar initial, Calendar finall) {
+
+    }
+
+    @Override
+    public void onRemoveMatter(String name) {
+
+    }
+
+    @Override
+    public void onError(String message) {
+
     }
 }

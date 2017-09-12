@@ -1,6 +1,7 @@
 package com.revisapp.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import in.cubestack.android.lib.storm.FieldType;
 import in.cubestack.android.lib.storm.annotation.Column;
@@ -21,6 +22,8 @@ public class Matter implements Serializable{
     private long init;
     @Column(name = "END", type = FieldType.LONG)
     private long end;
+
+    private List<Photo> photos;
 
     public Matter() {
     }

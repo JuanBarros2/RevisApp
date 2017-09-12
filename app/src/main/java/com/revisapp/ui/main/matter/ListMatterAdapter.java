@@ -17,11 +17,13 @@ import java.util.TimeZone;
  * Created by juan_ on 06/09/2017.
  */
 
-public class MatterAdapter extends RecyclerView.Adapter<MatterAdapter.ViewHolderMatter> {
-    List<Matter> matters;
+public class ListMatterAdapter extends RecyclerView.Adapter<ListMatterAdapter.ViewHolderMatter> {
+    private List<Matter> matters;
+    private OnClickMatterListener listener;
 
-    public MatterAdapter(List<Matter> matters) {
+    public ListMatterAdapter(List<Matter> matters, OnClickMatterListener listener) {
         this.matters = matters;
+        this.listener = listener;
     }
 
     @Override
@@ -50,6 +52,19 @@ public class MatterAdapter extends RecyclerView.Adapter<MatterAdapter.ViewHolder
         holder.end.setText(String.format("%02d:%02d",
                 end_schedule.get(Calendar.HOUR_OF_DAY),
                 end_schedule.get(Calendar.MINUTE)));
+
+    }
+
+    public void insertMatter(Matter matter){
+        matters.add(matter);
+        notifyItemInserted(matters.size() - 1);
+    }
+
+
+    public void removeMatter(Matter matter){
+        int index = matters.indexOf(matter);
+        matters.remove(index);
+        notifyItemRemoved(index);
     }
 
     @Override
@@ -57,7 +72,15 @@ public class MatterAdapter extends RecyclerView.Adapter<MatterAdapter.ViewHolder
         return matters.size();
     }
 
-    public class ViewHolderMatter extends RecyclerView.ViewHolder {
+    public void updateMatter(Matter oldMatter, Matter newMatter) {
+        int index = matters.indexOf(oldMatter);
+        if(index > 0){
+            matters.set(index, newMatter);
+            notifyItemChanged(index);
+        }
+    }
+
+    public class ViewHolderMatter extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView init;
         private TextView end;
@@ -68,6 +91,16 @@ public class MatterAdapter extends RecyclerView.Adapter<MatterAdapter.ViewHolder
             init = (TextView) view.findViewById(R.id.init_field);
             end = (TextView) view.findViewById(R.id.end_field);
             name = (TextView) view.findViewById(R.id.name_field);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition(); // gets item position
+            if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+                Matter matter = matters.get(position);
+                listener.onUpdateMatter(matter);
+            }
         }
     }
 }

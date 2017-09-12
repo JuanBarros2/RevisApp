@@ -6,7 +6,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 
-import com.revisapp.domain.Content;
+import com.revisapp.domain.Photo;
 import com.revisapp.helper.CameraHelper;
 import com.revisapp.domain.Database;
 
@@ -24,14 +24,14 @@ import in.cubestack.android.lib.storm.service.StormService;
 class PhotoModelImpl implements PhotoMVP.Model {
 
     private PhotoMVP.Presenter presenter;
-    private List<Content> photos;
+    private List<Photo> photos;
 
     PhotoModelImpl(PhotoMVP.Presenter presenter) {
         if (presenter != null) {
             this.presenter = presenter;
             StormService service = new BaseService(presenter.getContext(), Database.class);
             try {
-                photos = service.findAll(Content.class);
+                photos = service.findAll(Photo.class);
             } catch (Exception e) {
                 photos = new LinkedList<>();
                 e.printStackTrace();
@@ -48,6 +48,11 @@ class PhotoModelImpl implements PhotoMVP.Model {
         } else {
             presenter.requestPermissions(permissions.toArray(new String[permissions.size()]));
         }
+
+    }
+
+    @Override
+    public void savePicture() {
 
     }
 
@@ -70,7 +75,7 @@ class PhotoModelImpl implements PhotoMVP.Model {
     }
 
     @Override
-    public List<Content> getPhotos() {
+    public List<Photo> getPhotos() {
         return photos;
     }
 
