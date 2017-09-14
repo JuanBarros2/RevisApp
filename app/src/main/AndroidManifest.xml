@@ -30,7 +30,7 @@
         </activity>
 
         <provider
-            android:name="android.support.v4.photo.FileProvider"
+            android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.android.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">

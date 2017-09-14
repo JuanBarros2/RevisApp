@@ -29,6 +29,7 @@ public class ListMatterPresenterImpl implements ListMatterMVP.Presenter, OnClick
     public ListMatterPresenterImpl(ListMatterMVP.View view) {
         this.view = view;
         model = new ListMatterModelImpl(this);
+        setUpRecycle();
     }
 
     @Override
@@ -38,7 +39,7 @@ public class ListMatterPresenterImpl implements ListMatterMVP.Presenter, OnClick
 
     @Override
     public void setUpRecycle() {
-        RecyclerView recycleMatter = (RecyclerView) view.getActivity().findViewById(R.id.matter_list);
+        RecyclerView recycleMatter = view.getRecycler();
         adapter = new ListMatterAdapter(model.getAll(), this);
         recycleMatter.setAdapter(adapter);
     }
@@ -63,8 +64,8 @@ public class ListMatterPresenterImpl implements ListMatterMVP.Presenter, OnClick
     }
 
     private void addMatterInRecycle(Intent data) {
-        Bundle bundle = data.getExtras();
-        if(bundle != null){
+        if(data != null && data.getExtras() != null){
+            Bundle bundle = data.getExtras();
             Matter matter = (Matter) bundle.getSerializable(getContext().getString(R.string.bundle_matter));
             adapter.insertMatter(matter);
         }
@@ -81,10 +82,10 @@ public class ListMatterPresenterImpl implements ListMatterMVP.Presenter, OnClick
 
     @Override
     public void onUpdateMatter(Matter matter) {
-        Intent intent = new Intent(view.getContext(), InfoMatterActivity.class);
+        /*Intent intent = new Intent(view.getContext(), InfoMatterActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(getContext().getString(R.string.bundle_matter), matter);
-        view.getActivity().startActivityForResult(intent, REQUEST_UPDATE_MATTER);
+        view.getActivity().startActivityForResult(intent, REQUEST_UPDATE_MATTER);*/
     }
 
     @Override

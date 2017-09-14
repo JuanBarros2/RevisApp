@@ -1,6 +1,7 @@
 package com.revisapp.ui.main.matter.mvp;
 
 import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
 
 import com.revisapp.domain.Matter;
 import com.revisapp.ui.MVP;
@@ -24,6 +25,7 @@ public interface ListMatterMVP {
     interface View extends MVP.View{
         void loading();
         void loaded();
+        RecyclerView getRecycler();
     }
 
     interface Presenter extends MVP.Presenter{

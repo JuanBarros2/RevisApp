@@ -1,5 +1,7 @@
 package com.revisapp.ui.infomatter;
 
+import android.curso.revisapp.R;
+
 import com.revisapp.domain.Database;
 import com.revisapp.domain.Matter;
 
@@ -14,12 +16,12 @@ import in.cubestack.android.lib.storm.service.StormService;
  * Created by juan_ on 05/09/2017.
  */
 
-public class MatterModelImpl implements InfoMatterMVP.Model{
+public class InfoMatterModelImpl implements InfoMatterMVP.Model{
     private List<Matter> matters;
     private StormService service;
     private InfoMatterMVP.Presenter presenter;
 
-    public MatterModelImpl(InfoMatterMVP.Presenter presenter){
+    public InfoMatterModelImpl(InfoMatterMVP.Presenter presenter){
         this.presenter = presenter;
         service = new BaseService(presenter.getContext(), Database.class);
         try {
@@ -31,38 +33,20 @@ public class MatterModelImpl implements InfoMatterMVP.Model{
     }
 
     @Override
-    public boolean insertMatter(String name, Calendar initial, Calendar finall){
-        boolean inserted = false;
+    public void insertMatter(String name, Calendar initial, Calendar finall){
         Matter matter = new Matter(name, initial.getTime().getTime(), finall.getTime().getTime() );
 
         if(!matters.contains(matter)) {
             matters.add(matter);
             try {
                 service.save(matter);
-                inserted = true;
+
             } catch (Exception e) {
-                e.printStackTrace();
+                presenter.onError(presenter.getContext().getString(R.string.error_insert));
             }
         }
 
-        return inserted;
+        presenter.onInsertedMatter(matter);
     }
 
-    @Override
-    public boolean updateMatter(String name, Calendar initial, Calendar finall) {
-        return false;
-    }
-
-    @Override
-    public boolean removeMatter(String name){
-        Matter matter = new Matter(name, 0, 0);
-
-       // service.delete(matter);
-        return matters.remove(matter);
-    }
-
-    @Override
-    public List<Matter> getMatters(){
-        return matters;
-    }
 }

@@ -30,6 +30,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -56,14 +57,13 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/add_matter_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
-        android:onClick="doRegister"
         android:text="@string/ok"
         app:layout_constraintLeft_toLeftOf="@+id/linearLayout2"
         app:layout_constraintRight_toRightOf="@+id/linearLayout2"
@@ -77,7 +77,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -85,19 +85,21 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.0">
 
-        <Button
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/init_schedule_field"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="changeFirstValue"
-            android:text="@string/initial" />
+            android:ems="10"
+            android:inputType="time" />
 
-        <Button
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/end_schedule_field"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="changeSecondValue"
-            android:text="@string/end" />
+            android:ems="10"
+            android:inputType="time" />
 
     </LinearLayout>
 

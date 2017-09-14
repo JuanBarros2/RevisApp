@@ -18,9 +18,14 @@ import com.revisapp.ui.infomatter.InfoMatterActivity;
 import com.revisapp.ui.main.matter.mvp.ListMatterMVP;
 import com.revisapp.ui.main.matter.mvp.ListMatterPresenterImpl;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ListMatterFragment extends Fragment implements ListMatterMVP.View {
 
     private ListMatterMVP.Presenter presenter;
+
+    RecyclerView recycleMatter;
 
     public ListMatterFragment() {
 
@@ -42,7 +47,6 @@ public class ListMatterFragment extends Fragment implements ListMatterMVP.View {
     @NonNull
     private View setUp(LayoutInflater inflater, ViewGroup container) {
         View view = inflater.inflate(R.layout.fragment_schedule, container, false);
-
         FloatingActionButton actionButton = (FloatingActionButton) view.findViewById(R.id.add_schedule_btn);
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +55,7 @@ public class ListMatterFragment extends Fragment implements ListMatterMVP.View {
                 startActivityForResult(intent, ListMatterMVP.REQUEST_ADD_MATTER);
             }
         });
-        RecyclerView recycleMatter = (RecyclerView) view.findViewById(R.id.matter_list);
+        recycleMatter = (RecyclerView) view.findViewById(R.id.matters_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         RecyclerView.ItemDecoration itemDecoration = new
                 DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
@@ -79,5 +83,10 @@ public class ListMatterFragment extends Fragment implements ListMatterMVP.View {
     @Override
     public void loaded() {
 
+    }
+
+    @Override
+    public RecyclerView getRecycler() {
+        return recycleMatter;
     }
 }

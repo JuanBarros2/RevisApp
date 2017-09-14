@@ -24,4 +24,6 @@
     <string name="bundle_matter">bundle_matter</string>
     <string name="remove_matter">Ocorreu um erro ao tentar remover a matéria</string>
     <string name="bundle_new_matter">bundle_new_matter</string>
+    <string name="empty_field">Preencha o(s) campo(s) vazio(s).</string>
+    <string name="error_converter_time">Campo de tempo incorreto</string>
 </resources>

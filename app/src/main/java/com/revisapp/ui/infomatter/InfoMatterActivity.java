@@ -8,30 +8,45 @@ import android.os.Bundle;
 import android.curso.revisapp.R;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class InfoMatterActivity extends AppCompatActivity implements InfoMatterMVP.View {
     private InfoMatterMVP.Presenter presenter;
-    private Calendar initial_schedule;
-    private Calendar final_schedule;
-    private EditText name_field;
+    @BindView(R.id.name_field)
+    public EditText name_field;
+
+    @BindView(R.id.init_schedule_field)
+    public EditText init_schedule_field;
+
+    @BindView(R.id.end_schedule_field)
+    public EditText end_schedule_field;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_matter);
+        presenter = new InfoMatterPresenterImpl(this);
+        setUp();
+    }
 
+    private void setUp() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.info_toolbar);
         setSupportActionBar(toolbar);
+        ButterKnife.bind(this);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        name_field = (EditText) findViewById(R.id.name_field);
-        if (savedInstanceState == null){
-            initVars();
-        }
+
     }
 
     @Override
@@ -39,39 +54,15 @@ public class InfoMatterActivity extends AppCompatActivity implements InfoMatterM
         super.onSaveInstanceState(outState);
     }
 
-    private void initVars() {
-        initial_schedule = Calendar.getInstance();
-        final_schedule = Calendar.getInstance();
-        final_schedule.set(Calendar.HOUR, initial_schedule.get(Calendar.HOUR) + 1);
 
-    }
+    @OnClick(R.id.add_matter_btn)
+    public void doRegister(){
+        String name = name_field.getText().toString();
+        String init = init_schedule_field.getText().toString();
+        String end = end_schedule_field.getText().toString();
 
+        presenter.insertMatter(name, init, end);
 
-    public void changeFirstValue(View view){
-        new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                initial_schedule.set(Calendar.HOUR, hourOfDay);
-                initial_schedule.set(Calendar.MINUTE, minute);
-            }
-        }, initial_schedule.get(Calendar.HOUR), initial_schedule.get(Calendar.MINUTE), true).show();
-    }
-
-    public void changeSecondValue(View view){
-        new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                final_schedule.set(Calendar.HOUR, hourOfDay);
-                final_schedule.set(Calendar.MINUTE, minute);
-            }
-        }, final_schedule.get(Calendar.HOUR), final_schedule.get(Calendar.MINUTE), true).show();
-    }
-
-    public void doRegister(View view){
-        if(model.insertSchedule(name_field.getText().toString(),initial_schedule, final_schedule)){
-            setResult(RESULT_OK, getIntent());
-            finish();
-        };
     }
 
     @Override
@@ -85,22 +76,7 @@ public class InfoMatterActivity extends AppCompatActivity implements InfoMatterM
     }
 
     @Override
-    public void onInsertMatter(String name, Calendar initial, Calendar finall) {
-
-    }
-
-    @Override
-    public void onUpdateMatter(String name, Calendar initial, Calendar finall) {
-
-    }
-
-    @Override
-    public void onRemoveMatter(String name) {
-
-    }
-
-    @Override
     public void onError(String message) {
-
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }
